@@ -21,4 +21,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!!!');
 });
 
+const recipeRouter = require('./routes/recipes');
+app.use('/recipes', recipeRouter);
+
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
