@@ -1,7 +1,12 @@
 const router = require('express').Router();
+
+// Recipes Model
 let Recipes = require('../models/recipes.model');
 
-router.route('/').get((req, res) => {
+// @route   GET /recipes
+// @desc    GET all recipes
+// @access  Public
+router.get('/', (req, res) => {
     Recipes.find()
         .then(recipes => {
             res.json(recipes);
@@ -9,18 +14,23 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error:' + err));
 });
 
-router.route('/add').post((req, res) => {
-    console.log('recipe req object: ', req);
+// @route   POST /recipes/add
+// @desc    CREATE new recipe
+// @access  Public
+router.post('/add',(req, res) => {
     const recipe = req.body;
     console.log('new recipe', recipe);
     const newRecipe = new Recipes(recipe);
 
     newRecipe.save()
-        .then(() => res.json('Recipe Added!!!'))
+        .then((recipe) => res.json(recipe))
         .catch(err => res.status(400).json('Error:' + err));
 });
 
-router.route('/:id').delete((req, res) => {
+// @route   DELETE /recipes/:id
+// @desc    DELETE recipe at given id
+// @access  Public
+router.delete('/:id',(req, res) => {
     console.log(req.params.id);
     console.log('req', req);
     Recipes.findByIdAndDelete(req.params.id)
