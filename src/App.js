@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
+import AppNavbar from './components/AppNavbar';
 
-function App() {
-  return (
-    <div className="App">
-      <Button variant = "primary">Press me</Button>
-    </div>
-  );
+ class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      recipes: [
+        { 
+          title: '',
+          ingredients: [{item: '', amount: ''}],
+          summary: ''
+        }
+      ]
+    }
+  }
+  render() {
+    return (
+      <div className="App">
+        <AppNavbar />
+      </div>
+    );
+  }
+  
 }
 
 export default App;
