@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Button, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 import { v4 as uuid4 } from 'uuid';
 
 class RecipeList extends Component {
@@ -40,35 +39,10 @@ class RecipeList extends Component {
                         ))}
                         </ul>
                         <CardText>{recipe.summary}</CardText>
-                        <Button>Button</Button>
+                        <Button color="danger">Delete</Button>
                     </CardBody>
                 </Card>
                 ))}
-                
-                {/* <Container>
-                    <Button
-                        color="dark"
-                        style={{ marginBottom: '2rem' }}
-                        onClick={() => {
-                            const recipe = prompt('Enter Recipe');
-                            if (recipe) {
-                                this.setState(state => ({
-                                    recipes: [...state.recipes, { id: uuid4(), title: title, ingredients: ingredients[0].item, summary: summary }]
-                                }))
-                            }
-                        }}
-                    >Add Recipe</Button>
-                    <ListGroup>
-                        <TransitionGroup className="recipe-list">
-                            {this.state.recipes.map((recipe) => (
-                                <CSSTransition key={recipe.id} timeout={500} classNames="fade">
-                                    <ListGroupItem>Title: {recipe.title}, {recipe.ingredients.map((item) => `${item.item} `)}</ListGroupItem>
-                                </CSSTransition>
-                            ))}
-                        </TransitionGroup>
-                    </ListGroup>
-
-                </Container> */}
             </div>
         );
     }
