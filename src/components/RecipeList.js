@@ -5,8 +5,8 @@ import { v4 as uuid4 } from 'uuid';
 class RecipeList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            recipes: [
+        this.state = { //PUT STATE IN 'RecipeContainer' COMPONENT?
+            recipes: [ //INITIALIZE 'recipes' TO EMPTY ARRAYs
                 {
                     id: uuid4(),
                     title: 'Mustard chicken',
