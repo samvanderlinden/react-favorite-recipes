@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AppNavbar from './components/AppNavbar';
-import RecipeList from './components/RecipeList';
+import AppNavbar from './components/RecipeContainerComponent/AppNavbarComponent/AppNavbar';
+import RecipeList from './components/RecipeContainerComponent/RecipeListComponent/RecipeList';
 // import RecipeContainer from './components/RecipeContainer';
 
  class App extends Component {

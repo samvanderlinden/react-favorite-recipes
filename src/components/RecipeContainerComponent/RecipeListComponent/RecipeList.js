@@ -6,7 +6,7 @@ class RecipeList extends Component {
     constructor(props) {
         super(props);
         this.state = { //PUT STATE IN 'RecipeContainer' COMPONENT?
-            recipes: [ //INITIALIZE 'recipes' TO EMPTY ARRAYs
+            recipes: [ //INITIALIZE 'recipes' TO EMPTY ARRAY
                 {
                     id: uuid4(),
                     title: 'Mustard chicken',
