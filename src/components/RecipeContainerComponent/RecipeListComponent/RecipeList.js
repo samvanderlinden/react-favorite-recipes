@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Button, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
 const RecipeList = (props) => {
+    const recipes = props.recipes;
     return (
         <div>
-            {props.recipes.map((recipe) => (
+            {recipes.map((recipe) => (
                 <Card key={recipe.id}>
                     <CardImg top width="100%" src="" alt="Card image cap" />
                     <CardBody>
