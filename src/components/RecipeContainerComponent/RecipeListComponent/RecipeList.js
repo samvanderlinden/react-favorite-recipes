@@ -6,6 +6,9 @@ const RecipeList = (props) => {
     return (
         <div>
             {recipes.map((recipe) => (
+                <li key={recipe.id}>{recipe.title}</li>
+            ))}
+            {/* {recipes.map((recipe) => (
                 <Card key={recipe.id}>
                     <CardImg top width="100%" src="" alt="Card image cap" />
                     <CardBody>
@@ -19,7 +22,7 @@ const RecipeList = (props) => {
                         <Button color="danger">Delete</Button>
                     </CardBody>
                 </Card>
-            ))}
+            ))} */}
         </div>
     );
         
