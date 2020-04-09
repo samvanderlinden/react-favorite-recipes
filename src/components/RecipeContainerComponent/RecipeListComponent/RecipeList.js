@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { Button, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import RecipeItem from './RecipeItemComponent/RecipeItem';
 
 const RecipeList = (props) => {
     const recipes = props.recipes;
     return (
         <div>
+            <ul>
+                {recipes.map((recipe) => (
+                    <RecipeItem
+                        key={recipe.id}
+                        title={recipe.title}
+                    />
+                ))}
+            </ul>
+            {/*
             {recipes.map((recipe) => (
-                <li key={recipe.id}>{recipe.title}</li>
-            ))}
-            {/* {recipes.map((recipe) => (
                 <Card key={recipe.id}>
                     <CardImg top width="100%" src="" alt="Card image cap" />
                     <CardBody>
@@ -25,7 +32,7 @@ const RecipeList = (props) => {
             ))} */}
         </div>
     );
-        
+
 }
 
 export default RecipeList;

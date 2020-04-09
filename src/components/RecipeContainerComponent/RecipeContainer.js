@@ -42,8 +42,9 @@ class RecipeContiner extends Component {
             title: this.state.title,
         }
         this.setState({
-            recipes: [...this.state.recipes, obj]
-        }, () =>  console.log(this.state.recipes))
+            recipes: [...this.state.recipes, obj],
+        }, () =>  console.log('onSubmitHandler console logs second'));
+        e.target.reset();
        
     }
 
