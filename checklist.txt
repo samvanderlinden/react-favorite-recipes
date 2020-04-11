@@ -2,9 +2,9 @@ APP V1 CHECKLIST
 [ X ] Server side GET
 [ X ] Server side POST
 [ X ] Server side DELETE
-[   ] Server side EDIT
+[ X ] Server side EDIT
 
-[   ] Client side GET
+[ X ] Client side GET
 [   ] Client side POST
 [   ] Client side DELETE
 [   ] Client side EDIT

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RecipeList from './RecipeListComponent/RecipeList';
-import { v4 as uuid4 } from 'uuid';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
@@ -8,32 +7,18 @@ import axios from 'axios';
 class RecipeContiner extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            id: "",
+        this.state = {
             title: "",
             ingredients: "",
             summary: "",
-            recipes: [] //PUT STATE IN 'RecipeContainer' COMPONENT?
-            // recipes: [ //INITIALIZE 'recipes' TO EMPTY ARRAY
-            //     {
-            //         id: uuid4(),
-            //         title: 'Mustard chicken',
-            //         ingredients: [{ item: 'Chicken' }],
-            //         summary: 'So good'
-            //     },
-            //     {
-            //         id: uuid4(),
-            //         title: 'Oatmeal',
-            //         ingredients: [{ item: 'Oats' }, { item: 'Peanut butter' }],
-            //         summary: 'Energy meal'
-            //     }
-            // ]
+            recipes: []
         }
 
     }
     //GET RECIPES
     componentDidMount() {
         const url = 'http://localhost:5000/recipes/';
+
         axios.get(url)
             .then((res) => {
                 this.setState({ recipes: res.data })
@@ -43,39 +28,50 @@ class RecipeContiner extends Component {
     }
 
     onChangeHandler = (e) => {
-        this.setState({title: e.target.value})
+        // this.setState({ title: e.target.value })
+        this.setState({ [e.target.name]:e.target.value})
     }
 
+    //POST RECIPE
     onSubmitHandler = (e) => {
         e.preventDefault();
-        const obj = {
-            id: uuid4(),
+        const recipe = {
             title: this.state.title,
+            ingredients: this.state.ingredients,
+            summary: this.state.summary
         }
-        this.setState({
-            recipes: [...this.state.recipes, obj],
-        }, () =>  console.log('onSubmitHandler console logs second'));
-        e.target.reset();
-       
-    }
 
+        const url = 'http://localhost:5000/recipes/add';
+
+        axios.post(url, recipe)
+            .then(res => console.log(res.data));
+
+        this.setState({
+            recipes: [...this.state.recipes, recipe],
+        });
+
+        e.target.reset();
+
+    }
 
     render() {
         return (
             <div>
                 <form onSubmit={this.onSubmitHandler}>
-                    <label>
-                        Value:
-                            <input type="text" onChange={this.onChangeHandler} />
-                    </label>
+                    <label>Title:</label>
+                            <input type="text" onChange={this.onChangeHandler} name="title"/>
+                    <label>Ingredients:</label>
+                            <input type="text" onChange={this.onChangeHandler} name="ingredients"/>
+                    <label>Summary:</label>
+                            <input type="text" onChange={this.onChangeHandler} name="summary"/>
                     <input type="submit" value="Submit" />
                 </form>
-                <RecipeList 
-                recipes = {this.state.recipes}/>
+                <RecipeList
+                    recipes={this.state.recipes} />
                 <Fab color="primary" aria-label="add">
                     <AddIcon />
-                 </Fab>
-                
+                </Fab>
+
             </div>
         );
     }
