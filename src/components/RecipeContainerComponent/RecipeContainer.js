@@ -3,6 +3,7 @@ import RecipeList from './RecipeListComponent/RecipeList';
 import { v4 as uuid4 } from 'uuid';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import axios from 'axios';
 
 class RecipeContiner extends Component {
     constructor(props) {
@@ -29,6 +30,16 @@ class RecipeContiner extends Component {
             // ]
         }
 
+    }
+    //GET RECIPES
+    componentDidMount() {
+        const url = 'http://localhost:5000/recipes/';
+        axios.get(url)
+            .then((res) => {
+                this.setState({ recipes: res.data })
+            }).catch(err => {
+                console.log(err);
+            });
     }
 
     onChangeHandler = (e) => {
@@ -59,7 +70,8 @@ class RecipeContiner extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-                <RecipeList recipes = {this.state.recipes}/>
+                <RecipeList 
+                recipes = {this.state.recipes}/>
                 <Fab color="primary" aria-label="add">
                     <AddIcon />
                  </Fab>

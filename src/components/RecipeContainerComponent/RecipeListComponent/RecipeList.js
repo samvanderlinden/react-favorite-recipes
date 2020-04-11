@@ -3,14 +3,17 @@ import { Button, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } fr
 import RecipeItem from './RecipeItemComponent/RecipeItem';
 
 const RecipeList = (props) => {
+    console.log(props);
     const recipes = props.recipes;
     return (
         <div>
             <ul>
                 {recipes.map((recipe) => (
                     <RecipeItem
-                        key={recipe.id}
+                        key={recipe._id}
                         title={recipe.title}
+                        ingredients={recipe.ingredients}
+                        summary={recipe.summary}
                     />
                 ))}
             </ul>
