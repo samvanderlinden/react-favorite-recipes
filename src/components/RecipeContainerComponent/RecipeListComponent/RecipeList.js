@@ -2,8 +2,9 @@ import React from 'react';
 import RecipeItem from './RecipeItemComponent/RecipeItem';
 
 const RecipeList = (props) => {
-    console.log('props.recipes', props.recipes)
+    console.log('props.recipes', props)
     const recipes = props.recipes;
+    const deleteRecipe = props.deleteRecipe;
     return (
         <div>
             <ul>
@@ -13,6 +14,8 @@ const RecipeList = (props) => {
                         title={recipe.title}
                         ingredients={recipe.ingredients}
                         summary={recipe.summary}
+                        deleteRecipe={deleteRecipe}
+                        uniqueID={recipe._id}
                     />
                 ))}
             </ul>

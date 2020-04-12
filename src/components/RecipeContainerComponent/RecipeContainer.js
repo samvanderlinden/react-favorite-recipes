@@ -51,6 +51,16 @@ class RecipeContiner extends Component {
 
     }
 
+    //DELETE RECIPE
+    deleteRecipe = (id) => {
+        console.log('deleteRecipe clicked');
+        const url = `http://localhost:5000/recipes/${id}`;
+        axios.delete(url)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        this.setState({ recipes: this.state.recipes.filter(el => el._id !== id) });
+    }
+
     render() {
         return (
             <div>
@@ -63,7 +73,9 @@ class RecipeContiner extends Component {
                     <input type="text" onChange={this.onChangeHandler} name="summary" />
                     <input type="submit" value="Submit" />
                 </form>
-                <RecipeList recipes={this.state.recipes} />
+                <RecipeList 
+                recipes={this.state.recipes} 
+                deleteRecipe={this.deleteRecipe}/>
                 <Fab color="primary" aria-label="add">
                     <AddIcon />
                 </Fab>

@@ -5,11 +5,13 @@ APP V1 CHECKLIST
 [ X ] Server side EDIT
 
 [ X ] Client side GET
-[   ] Client side POST
+[ X ] Client side POST
 [   ] Client side DELETE
 [   ] Client side EDIT
 
 [   ] Add styling with Material UI/CSS
+
+[   ] Host on Heroku
 
 APP V2 CHECKLIST
 [   ] Add Redux
