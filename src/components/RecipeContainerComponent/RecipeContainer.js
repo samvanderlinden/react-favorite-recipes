@@ -28,8 +28,7 @@ class RecipeContiner extends Component {
     }
 
     onChangeHandler = (e) => {
-        // this.setState({ title: e.target.value })
-        this.setState({ [e.target.name]:e.target.value})
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     //POST RECIPE
@@ -44,11 +43,9 @@ class RecipeContiner extends Component {
         const url = 'http://localhost:5000/recipes/add';
 
         axios.post(url, recipe)
-            .then(res => console.log(res.data));
-
-        this.setState({
-            recipes: [...this.state.recipes, recipe],
-        });
+            .then(res => this.setState({
+                recipes: [...this.state.recipes, res.data],
+            }, () => console.log('new recipe!', res.data)));
 
         e.target.reset();
 
@@ -59,15 +56,14 @@ class RecipeContiner extends Component {
             <div>
                 <form onSubmit={this.onSubmitHandler}>
                     <label>Title:</label>
-                            <input type="text" onChange={this.onChangeHandler} name="title"/>
+                    <input type="text" onChange={this.onChangeHandler} name="title" />
                     <label>Ingredients:</label>
-                            <input type="text" onChange={this.onChangeHandler} name="ingredients"/>
+                    <input type="text" onChange={this.onChangeHandler} name="ingredients" />
                     <label>Summary:</label>
-                            <input type="text" onChange={this.onChangeHandler} name="summary"/>
+                    <input type="text" onChange={this.onChangeHandler} name="summary" />
                     <input type="submit" value="Submit" />
                 </form>
-                <RecipeList
-                    recipes={this.state.recipes} />
+                <RecipeList recipes={this.state.recipes} />
                 <Fab color="primary" aria-label="add">
                     <AddIcon />
                 </Fab>
