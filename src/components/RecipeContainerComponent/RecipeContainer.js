@@ -71,15 +71,14 @@ class RecipeContiner extends Component {
                     <input type="text" onChange={this.onChangeHandler} name="ingredients" />
                     <label>Summary:</label>
                     <input type="text" onChange={this.onChangeHandler} name="summary" />
-                    <input type="submit" value="Submit" />
+                    <Fab color="primary" aria-label="add" type="submit">
+                        <AddIcon />
+                    </Fab>
                 </form>
                 <RecipeList 
                 recipes={this.state.recipes} 
                 deleteRecipe={this.deleteRecipe}/>
-                <Fab color="primary" aria-label="add">
-                    <AddIcon />
-                </Fab>
-
+                
             </div>
         );
     }
