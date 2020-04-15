@@ -5,6 +5,7 @@ const RecipeList = (props) => {
     console.log('props.recipes', props)
     const recipes = props.recipes;
     const deleteRecipe = props.deleteRecipe;
+    const updateRecipe = props.updateRecipe;
     return (
         <div>
             <ul>
@@ -15,6 +16,7 @@ const RecipeList = (props) => {
                         ingredients={recipe.ingredients}
                         summary={recipe.summary}
                         deleteRecipe={deleteRecipe}
+                        updateRecipe={updateRecipe}
                         uniqueID={recipe._id}
                     />
                 ))}

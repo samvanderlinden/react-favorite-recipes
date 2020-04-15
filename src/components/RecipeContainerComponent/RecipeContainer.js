@@ -61,6 +61,23 @@ class RecipeContiner extends Component {
         this.setState({ recipes: this.state.recipes.filter(el => el._id !== id) });
     }
 
+    //UPDATE RECIPE
+    updateRecipe = (id) => {
+
+        console.log('update button pressed for item id', id);
+        const recipe = {
+            title: this.state.title,
+            ingredients: this.state.ingredients,
+            summary: this.state.ingredients
+        }
+    
+        // const url = `http://localhost:5000/recipes/${id}`;
+        // axios.put(url, recipe)
+        // .then(res => console.log(res.data))
+        // .catch(err => console.log(err));
+
+    }
+
     render() {
         return (
             <div>
@@ -77,7 +94,8 @@ class RecipeContiner extends Component {
                 </form>
                 <RecipeList 
                 recipes={this.state.recipes} 
-                deleteRecipe={this.deleteRecipe}/>
+                deleteRecipe={this.deleteRecipe}
+                updateRecipe={this.updateRecipe}/>
                 
             </div>
         );

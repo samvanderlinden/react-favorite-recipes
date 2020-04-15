@@ -8,6 +8,7 @@ const RecipeItem = (props) => {
                 <div>{props.ingredients}</div>
                 <div>{props.summary}</div>
                 <button onClick={() => {props.deleteRecipe(props.uniqueID)}}>Delete</button>
+                <button onClick={() => {props.updateRecipe(props.uniqueID)}}>Update</button>
             </li>
     )
 }
