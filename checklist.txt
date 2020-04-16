@@ -8,7 +8,8 @@ APP V1 CHECKLIST
 [ X ] Client side POST
 [ X ] Client side DELETE
 [   ] Client side EDIT
-
+    - Add modal that pops up when you press "Edit" button and the modal inputs 
+      get populated with that specific recipe info. Then you can just update it from there
 [   ] Add styling with Material UI/CSS
 
 [   ] Host on Heroku
