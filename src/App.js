@@ -3,11 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom'
 //COMPONENTS
-import AppNavbar from './components/RecipeContainerComponent/AppNavbarComponent/AppNavbar';
 import RecipeContainer from './components/RecipeContainerComponent/RecipeContainer';
 import Signup from './components/SignUpComponent/SignUp';
 import LoginForm from './components/LoginComponent/Login';
 import Navbar from './components/NavbarComponent/Navbar';
+import Home from './components/HomeComponent/Home';
 
 class App extends Component {
   constructor(props) {
@@ -49,9 +49,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <AppNavbar /> */}
-        {/* <RecipeContainer /> */}
-        {/* <Signup /> */}
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
         {this.state.loggedIn &&
@@ -59,7 +56,7 @@ class App extends Component {
         }
         {/* Routes to different components */}
         <Route
-          exact path="/"
+          exact path="/recipes"
           component={RecipeContainer} />
         <Route
           path="/login"

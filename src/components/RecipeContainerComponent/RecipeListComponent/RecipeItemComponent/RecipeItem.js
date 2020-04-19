@@ -1,14 +1,25 @@
 import React from 'react';
+import Fab from '@material-ui/core/Fab';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 const RecipeItem = (props) => {
     console.log('recipe item props', props);
+    // const editButtonStyle = {
+         
+    // }
     return (
             <li>
                 <div>{props.title}</div>
                 <div>{props.ingredients}</div>
                 <div>{props.summary}</div>
-                <button onClick={() => {props.deleteRecipe(props.uniqueID)}}>Delete</button>
-                <button onClick={() => {props.updateRecipe(props.uniqueID)}}>Update</button>
+                <Fab color="secondary" aria-label="add" onClick={() => {props.deleteRecipe(props.uniqueID)}}>
+                        <DeleteIcon />
+                </Fab>
+                {/* <button onClick={() => {props.updateRecipe(props.uniqueID)}}>Update</button> */}
+                <Fab color="default" aria-label="add" onClick={() => {props.updateRecipe(props.uniqueID)}}>
+                        <EditIcon />
+                </Fab>
             </li>
     )
 }
