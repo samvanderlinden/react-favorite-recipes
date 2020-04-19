@@ -1,8 +1,13 @@
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
 const app = express();
 const apiPort = process.env.PORT || 5000;
 const mongoose = require('mongoose');
+
+//ROUTE REQUIRES
+const user = require('./routes/user');
+const recipeRouter = require('./routes/recipes');
 
 require('dotenv').config();
 
@@ -21,7 +26,9 @@ app.get('/', (req, res) => {
     res.send('Hello World!!!');
 });
 
-const recipeRouter = require('./routes/recipes');
+//ROUTES
+app.use('/user', user);
 app.use('/recipes', recipeRouter);
 
+//STARTING SERVER
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
