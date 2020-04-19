@@ -1,20 +1,82 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import { Route, Link } from 'react-router-dom'
+//COMPONENTS
 import AppNavbar from './components/RecipeContainerComponent/AppNavbarComponent/AppNavbar';
 import RecipeContainer from './components/RecipeContainerComponent/RecipeContainer';
-import SignUp from './components/SignUpComponent/SignUp';
+import Signup from './components/SignUpComponent/SignUp';
+import LoginForm from './components/LoginComponent/Login';
+import Navbar from './components/NavbarComponent/Navbar';
 
- class App extends Component {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: false,
+      username: null
+    }
+  }
+
+  componentDidMount = () => {
+    this.getUser()
+  }
+
+  updateUser = (userObject) => {
+    this.setState(userObject)
+  }
+
+  getUser = () => {
+    axios.get('/user/').then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
+      }
+    })
+  }
   render() {
     return (
       <div className="App">
-        <AppNavbar />
-        <RecipeContainer />
-        <SignUp />
+        {/* <AppNavbar /> */}
+        {/* <RecipeContainer /> */}
+        {/* <Signup /> */}
+        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        {/* greet user if logged in: */}
+        {this.state.loggedIn &&
+          <p>Join the party, {this.state.username}!</p>
+        }
+        {/* Routes to different components */}
+        <Route
+          exact path="/"
+          component={RecipeContainer} />
+        <Route
+          path="/login"
+          render={() =>
+            <LoginForm
+              updateUser={this.updateUser}
+            />}
+        />
+        <Route
+          path="/signup"
+          render={() =>
+            <Signup/>}
+        />
       </div>
     );
   }
-  
+
 }
 
 export default App;
