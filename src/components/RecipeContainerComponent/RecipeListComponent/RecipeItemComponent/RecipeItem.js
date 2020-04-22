@@ -7,9 +7,9 @@ const RecipeItem = (props) => {
     console.log('recipe item props', props);
     return (
             <li>
-                <div>{props.title}</div>
-                <div>{props.ingredients}</div>
-                <div>{props.summary}</div>
+                <div>Title: {props.title}</div>
+                <div>Ingredients: {props.ingredients}</div>
+                <div>Cooking Directions: {props.summary}</div>
                 <Fab color="secondary" aria-label="add" onClick={() => {props.deleteRecipe(props.uniqueID)}}>
                         <DeleteIcon />
                 </Fab>

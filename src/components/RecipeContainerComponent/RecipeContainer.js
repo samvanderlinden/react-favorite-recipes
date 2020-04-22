@@ -4,6 +4,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import '../../App.css';
 
 class RecipeContiner extends Component {
     constructor(props) {
@@ -81,27 +82,29 @@ class RecipeContiner extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.onSubmitHandler}>
-                    <TextField type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
-                    <TextField type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
+            <div className="recipe-container">
+                <form className = "form-container" onSubmit={this.onSubmitHandler}>
+                    <TextField className = "form-item" type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
+                    <TextField className = "form-item" type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
                     <TextField
-                    id="outlined-multiline-static"
-                    label="Cooking directions"
-                    multiline
-                    rows={6}
-                    variant="outlined"
-                    onChange={this.onChangeHandler} 
-                    name="summary"
+                        id="outlined-multiline-static"
+                        label="Cooking directions"
+                        multiline
+                        rows={6}
+                        variant="outlined"
+                        onChange={this.onChangeHandler} 
+                        name="summary"
+                        className = "form-item"
                     />
                     <Fab color="primary" aria-label="add" type="submit">
                         <AddIcon />
                     </Fab>
                 </form>
                 <RecipeList 
-                recipes={this.state.recipes} 
-                deleteRecipe={this.deleteRecipe}
-                updateRecipe={this.updateRecipe}/>
+                    recipes={this.state.recipes} 
+                    deleteRecipe={this.deleteRecipe}
+                    updateRecipe={this.updateRecipe}
+                />
                 
             </div>
         );
