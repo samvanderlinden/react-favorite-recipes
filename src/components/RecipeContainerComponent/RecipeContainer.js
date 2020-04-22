@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RecipeList from './RecipeListComponent/RecipeList';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 
 class RecipeContiner extends Component {
@@ -82,12 +83,17 @@ class RecipeContiner extends Component {
         return (
             <div>
                 <form onSubmit={this.onSubmitHandler}>
-                    <label>Title:</label>
-                    <input type="text" onChange={this.onChangeHandler} name="title" />
-                    <label>Ingredients:</label>
-                    <input type="text" onChange={this.onChangeHandler} name="ingredients" />
-                    <label>Summary:</label>
-                    <input type="text" onChange={this.onChangeHandler} name="summary" />
+                    <TextField type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
+                    <TextField type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
+                    <TextField
+                    id="outlined-multiline-static"
+                    label="Cooking directions"
+                    multiline
+                    rows={6}
+                    variant="outlined"
+                    onChange={this.onChangeHandler} 
+                    name="summary"
+                    />
                     <Fab color="primary" aria-label="add" type="submit">
                         <AddIcon />
                     </Fab>

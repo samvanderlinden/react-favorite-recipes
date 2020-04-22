@@ -2,14 +2,13 @@ import React from 'react';
 import RecipeItem from './RecipeItemComponent/RecipeItem';
 
 const RecipeList = (props) => {
-    console.log('props.recipes', props)
     const recipes = props.recipes;
     const deleteRecipe = props.deleteRecipe;
     const updateRecipe = props.updateRecipe;
     return (
         <div>
             <ul>
-                {recipes.map((recipe, index) => (
+                {recipes.map((recipe) => (
                     <RecipeItem
                         key={recipe._id}
                         title={recipe.title}
@@ -23,7 +22,6 @@ const RecipeList = (props) => {
             </ul>
         </div>
     );
-
 }
 
 export default RecipeList;
