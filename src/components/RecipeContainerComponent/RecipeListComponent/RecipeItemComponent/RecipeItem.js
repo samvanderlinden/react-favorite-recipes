@@ -5,9 +5,6 @@ import EditIcon from '@material-ui/icons/Edit';
 
 const RecipeItem = (props) => {
     console.log('recipe item props', props);
-    // const editButtonStyle = {
-         
-    // }
     return (
             <li>
                 <div>{props.title}</div>
@@ -16,7 +13,6 @@ const RecipeItem = (props) => {
                 <Fab color="secondary" aria-label="add" onClick={() => {props.deleteRecipe(props.uniqueID)}}>
                         <DeleteIcon />
                 </Fab>
-                {/* <button onClick={() => {props.updateRecipe(props.uniqueID)}}>Update</button> */}
                 <Fab color="default" aria-label="add" onClick={() => {props.updateRecipe(props.uniqueID)}}>
                         <EditIcon />
                 </Fab>
