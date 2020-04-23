@@ -7,7 +7,6 @@ const RecipeList = (props) => {
     const updateRecipe = props.updateRecipe;
     return (
         <div>
-            <ul>
                 {recipes.map((recipe) => (
                     <RecipeItem
                         key={recipe._id}
@@ -19,7 +18,6 @@ const RecipeList = (props) => {
                         uniqueID={recipe._id}
                     />
                 ))}
-            </ul>
         </div>
     );
 }

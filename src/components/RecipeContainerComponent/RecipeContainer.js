@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddRecipeModal from './AddRecipeComponent/AddRecipeModal';
 import RecipeList from './RecipeListComponent/RecipeList';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
@@ -96,7 +97,7 @@ class RecipeContiner extends Component {
                         name="summary"
                         className = "form-item"
                     />
-                    <Fab color="primary" aria-label="add" type="submit">
+                    <Fab className="add-recipe-button" color="primary" aria-label="add" type="submit">
                         <AddIcon />
                     </Fab>
                 </form>
@@ -105,6 +106,7 @@ class RecipeContiner extends Component {
                     deleteRecipe={this.deleteRecipe}
                     updateRecipe={this.updateRecipe}
                 />
+                <AddRecipeModal />
                 
             </div>
         );
