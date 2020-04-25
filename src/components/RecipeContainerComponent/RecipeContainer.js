@@ -4,6 +4,10 @@ import RecipeList from './RecipeListComponent/RecipeList';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
 import '../../App.css';
 
@@ -14,10 +18,22 @@ class RecipeContiner extends Component {
             title: "",
             ingredients: "",
             summary: "",
-            recipes: []
+            recipes: [],
+            open: false
         }
 
     }
+
+    handleClickOpen = () => {
+        console.log('handleClickOpen was clicked');
+        this.setState({ open: true });
+    }
+
+    handleClickClose = () => {
+        console.log('handleClickClose was clicked');
+        this.setState({ open: false });
+    }
+
     //GET RECIPES
     componentDidMount() {
         const url = 'http://localhost:5000/recipes/';
@@ -84,7 +100,12 @@ class RecipeContiner extends Component {
     render() {
         return (
             <div className="recipe-container">
-                <form className = "form-container" onSubmit={this.onSubmitHandler}>
+                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+                    Click to add recipe
+                </Button>
+                <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Add Recipe</DialogTitle>
+                    <form className = "form-container" onSubmit={this.onSubmitHandler}>
                     <TextField className = "form-item" type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
                     <TextField className = "form-item" type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
                     <TextField
@@ -101,12 +122,18 @@ class RecipeContiner extends Component {
                         <AddIcon />
                     </Fab>
                 </form>
+                    <DialogActions>
+                        <Button onClick={this.handleClickClose} color="primary">
+                            Cancel
+                        </Button>
+                    </DialogActions>
+                </Dialog>
                 <RecipeList 
                     recipes={this.state.recipes} 
                     deleteRecipe={this.deleteRecipe}
                     updateRecipe={this.updateRecipe}
                 />
-                <AddRecipeModal />
+                {/* <AddRecipeModal /> */}
                 
             </div>
         );

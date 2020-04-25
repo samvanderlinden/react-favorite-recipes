@@ -34,7 +34,6 @@ class AddRecipeModal extends Component {
                         <Button onClick={this.handleClickClose} color="primary">
                             Cancel
                         </Button>
-
                     </DialogActions>
                 </Dialog>
             </div>
