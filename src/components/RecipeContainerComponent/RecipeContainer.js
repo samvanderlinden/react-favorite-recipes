@@ -4,6 +4,7 @@ import AddRecipeModal from './AddRecipeComponent/AddRecipeModal';
 import RecipeList from './RecipeListComponent/RecipeList';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import CancelIcon from '@material-ui/icons/Cancel';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,6 +12,17 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
 import '../../App.css';
+
+const style = {
+    alignSelf: 'flex-start',
+    position: 'absolute',
+    bottom: '10px',
+    left: '10px'
+}
+
+const inputStyle = {
+    marginTop : '15px'
+}
 
 class RecipeContiner extends Component {
     constructor(props) {
@@ -65,6 +77,7 @@ class RecipeContiner extends Component {
         axios.post(url, recipe)
             .then(res => this.setState({
                 recipes: [...this.state.recipes, res.data],
+                open: false
             }, () => console.log('new recipe!', res.data)));
 
         Swal.fire({
@@ -103,6 +116,7 @@ class RecipeContiner extends Component {
     }
 
     render() {
+        console.log('styling props', style);
         return (
             <div>
                 <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
@@ -111,8 +125,8 @@ class RecipeContiner extends Component {
                 <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Add Recipe</DialogTitle>
                     <form className="form-container" onSubmit={this.onSubmitHandler}>
-                        <TextField className="form-input-title" type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
-                        <TextField className="form-input-ingredients" type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
+                        <TextField style={inputStyle} className="form-input-title" type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
+                        <TextField style={inputStyle} className="form-input-ingredients" type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
                         <TextField
                             id="outlined-multiline-static"
                             label="Directions"
@@ -122,15 +136,19 @@ class RecipeContiner extends Component {
                             onChange={this.onChangeHandler}
                             name="summary"
                             className="form-input-directions"
+                            style={inputStyle}
                         />
-                        <Fab className="add-recipe-button" color="primary" aria-label="add" type="submit">
+                        <Fab style={style} className="add-recipe-button" color="primary" aria-label="add" type="submit">
                             <AddIcon />
                         </Fab>
                     </form>
                     <DialogActions>
-                        <Button onClick={this.handleClickClose} color="primary">
+                        {/* <Button onClick={this.handleClickClose} color="primary">
                             Cancel
-                        </Button>
+                        </Button> */}
+                        <Fab color="secondary" aria-label="cancel">
+                            <CancelIcon />
+                        </Fab>
                     </DialogActions>
                 </Dialog>
                 <RecipeList
