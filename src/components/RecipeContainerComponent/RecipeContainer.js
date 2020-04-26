@@ -110,18 +110,18 @@ class RecipeContiner extends Component {
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Add Recipe</DialogTitle>
-                    <form onSubmit={this.onSubmitHandler}>
-                        <TextField className="form-item" type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
-                        <TextField className="form-item" type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
+                    <form className="form-container" onSubmit={this.onSubmitHandler}>
+                        <TextField className="form-input-title" type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
+                        <TextField className="form-input-ingredients" type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
                         <TextField
                             id="outlined-multiline-static"
-                            label="Cooking directions"
+                            label="Directions"
                             multiline
                             rows={6}
                             variant="outlined"
                             onChange={this.onChangeHandler}
                             name="summary"
-                            className="form-item"
+                            className="form-input-directions"
                         />
                         <Fab className="add-recipe-button" color="primary" aria-label="add" type="submit">
                             <AddIcon />

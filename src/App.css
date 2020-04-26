@@ -1,15 +1,26 @@
+.App {
+  background-color: #ebe9e7;
+}
+
 .form-container {
   display: flex;
-  /* justify-content: space-around; */
-  align-items: center;
+  flex-direction: column;
   margin: 50px;
 }
 
 .recipe-card {
   width: 300px;
-  height: 400px;
+  height: 300px;
+  margin: 40px;
 }
 
+.add-recipe-button {
+  align-items: flex-end;
+}
+
+/* .form-input-title {
+  margin: auto;
+} */
 /* .card-btn {
   align-items: center;
 } */
