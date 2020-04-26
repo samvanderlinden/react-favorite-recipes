@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Swal from 'sweetalert2';
 import AddRecipeModal from './AddRecipeComponent/AddRecipeModal';
 import RecipeList from './RecipeListComponent/RecipeList';
 import Fab from '@material-ui/core/Fab';
@@ -66,8 +67,12 @@ class RecipeContiner extends Component {
                 recipes: [...this.state.recipes, res.data],
             }, () => console.log('new recipe!', res.data)));
 
-        e.target.reset();
+        Swal.fire({
+            icon: 'success',
+            title: 'You successfully added a new recipe!'
+        })
 
+        e.target.reset();
     }
 
     //DELETE RECIPE
@@ -89,7 +94,7 @@ class RecipeContiner extends Component {
             ingredients: this.state.ingredients,
             summary: this.state.ingredients
         }
-    
+
         // const url = `http://localhost:5000/recipes/${id}`;
         // axios.put(url, recipe)
         // .then(res => console.log(res.data))
@@ -99,42 +104,42 @@ class RecipeContiner extends Component {
 
     render() {
         return (
-            <div className="recipe-container">
+            <div>
                 <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
                     Click to add recipe
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Add Recipe</DialogTitle>
-                    <form className = "form-container" onSubmit={this.onSubmitHandler}>
-                    <TextField className = "form-item" type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
-                    <TextField className = "form-item" type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
-                    <TextField
-                        id="outlined-multiline-static"
-                        label="Cooking directions"
-                        multiline
-                        rows={6}
-                        variant="outlined"
-                        onChange={this.onChangeHandler} 
-                        name="summary"
-                        className = "form-item"
-                    />
-                    <Fab className="add-recipe-button" color="primary" aria-label="add" type="submit">
-                        <AddIcon />
-                    </Fab>
-                </form>
+                    <form onSubmit={this.onSubmitHandler}>
+                        <TextField className="form-item" type="text" onChange={this.onChangeHandler} name="title" id="standard-basic" label="Title" />
+                        <TextField className="form-item" type="text" onChange={this.onChangeHandler} name="ingredients" id="standard-basic" label="Ingredients" />
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Cooking directions"
+                            multiline
+                            rows={6}
+                            variant="outlined"
+                            onChange={this.onChangeHandler}
+                            name="summary"
+                            className="form-item"
+                        />
+                        <Fab className="add-recipe-button" color="primary" aria-label="add" type="submit">
+                            <AddIcon />
+                        </Fab>
+                    </form>
                     <DialogActions>
                         <Button onClick={this.handleClickClose} color="primary">
                             Cancel
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <RecipeList 
-                    recipes={this.state.recipes} 
+                <RecipeList
+                    recipes={this.state.recipes}
                     deleteRecipe={this.deleteRecipe}
                     updateRecipe={this.updateRecipe}
                 />
                 {/* <AddRecipeModal /> */}
-                
+
             </div>
         );
     }
