@@ -16,7 +16,7 @@ import '../../App.css';
 const style = {
     alignSelf: 'flex-start',
     position: 'absolute',
-    bottom: '10px',
+    bottom: '-110px',
     left: '10px'
 }
 
@@ -108,11 +108,10 @@ class RecipeContiner extends Component {
             summary: this.state.ingredients
         }
 
-        // const url = `http://localhost:5000/recipes/${id}`;
-        // axios.put(url, recipe)
-        // .then(res => console.log(res.data))
-        // .catch(err => console.log(err));
-
+        const url = `http://localhost:5000/recipes/${id}`;
+        axios.put(url, recipe)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
     }
 
     render() {
@@ -143,9 +142,6 @@ class RecipeContiner extends Component {
                         </Fab>
                     </form>
                     <DialogActions>
-                        {/* <Button onClick={this.handleClickClose} color="primary">
-                            Cancel
-                        </Button> */}
                         <Fab color="secondary" aria-label="cancel">
                             <CancelIcon />
                         </Fab>
@@ -155,6 +151,11 @@ class RecipeContiner extends Component {
                     recipes={this.state.recipes}
                     deleteRecipe={this.deleteRecipe}
                     updateRecipe={this.updateRecipe}
+                    open={this.state.open}
+                    openDialog={this.handleClickOpen}
+                    // closeDialog={this.handleClickClose}
+                    // style={inputStyle}
+                    // inputChange={this.onChangeHandler}
                 />
                 {/* <AddRecipeModal /> */}
 
