@@ -151,8 +151,8 @@ class RecipeContiner extends Component {
                     recipes={this.state.recipes}
                     deleteRecipe={this.deleteRecipe}
                     updateRecipe={this.updateRecipe}
-                    open={this.state.open}
-                    openDialog={this.handleClickOpen}
+                    // open={this.state.open}
+                    // openDialog={this.handleClickOpen}
                     // closeDialog={this.handleClickClose}
                     // style={inputStyle}
                     // inputChange={this.onChangeHandler}

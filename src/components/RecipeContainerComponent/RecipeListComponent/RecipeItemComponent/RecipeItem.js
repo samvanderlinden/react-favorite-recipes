@@ -13,61 +13,85 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import '../../../../App.css';
 
-const RecipeItem = (props) => {
-        // constructor(props) {
-        //         super(props);
-        //         this.state = {
-        //                 open: false
-        //         }
-        // }
-        // render() {
+const inputStyle = {
+        marginTop: '15px'
+}
+
+const style = {
+        alignSelf: 'flex-start',
+        position: 'absolute',
+        bottom: '-110px',
+        left: '10px'
+}
+
+class RecipeItem extends Component {
+        constructor(props) {
+                super(props);
+                this.state = {
+                        open: false
+                }
+        }
+
+        handleClickOpen = () => {
+                console.log('handleClickOpen was clicked');
+                this.setState({ open: true });
+        }
+
+        handleClickClose = () => {
+                console.log('handleClickClose was clicked');
+                this.setState({ open: false });
+        }
+        render() {
                 return (
                         <div>
                                 <Card className="recipe-card">
                                         <CardContent className="recipe-content">
-                                                <div>Title: {props.title}</div>
-                                                <div>Ingredients: {props.ingredients}</div>
-                                                <div>Cooking Directions: {props.summary}</div>
-                                                <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { props.deleteRecipe(props.uniqueID) }}>
+                                                <div>Title: {this.props.title}</div>
+                                                <div>Ingredients: {this.props.ingredients}</div>
+                                                <div>Cooking Directions: {this.props.summary}</div>
+                                                <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
                                                         <DeleteIcon />
                                                 </Fab>
                                                 {/* <Fab className="card-btn" color="default" aria-label="add" onClick={ () => {props.updateRecipe(props.uniqueID)} }>
                                                         <EditIcon />
                                                 </Fab> */}
-                                                <Fab className="card-btn" color="default" aria-label="add" onClick={props.openDialog }>
+                                                <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen}>
                                                         <EditIcon />
                                                 </Fab>
                                         </CardContent>
                                 </Card>
-                                <Dialog open={props.open} onClose={props.closeDialog} aria-labelledby="form-dialog-title">
+                                <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
                                         <DialogTitle id="form-dialog-title">Edit Recipe</DialogTitle>
-                                {/* <form className="form-container" onSubmit={() => { props.updateRecipe(this.props.uniqueID) }}>
-                                        <TextField style={props.inputStyle} className="form-input-title" type="text" onChange={props.inputChange} name="title" id="standard-basic" label="Title" />
-                                        <TextField style={props.inputStyle} className="form-input-ingredients" type="text" onChange={props.inputChange} name="ingredients" id="standard-basic" label="Ingredients" />
-                                        <TextField
-                                                id="outlined-multiline-static"
-                                                label="Directions"
-                                                multiline
-                                                rows={6}
-                                                variant="outlined"
-                                                onChange={props.inputChange}
-                                                name="summary"
-                                                className="form-input-directions"
-                                                style={props.inputStyle}
-                                        />
-                                        <Fab style={props.style} className="add-recipe-button" color="primary" aria-label="add" type="submit">
-                                                <AddIcon />
-                                        </Fab>
-                                </form>
-                                <DialogActions>
-                                        <Fab color="secondary" aria-label="cancel">
-                                                <CancelIcon />
-                                        </Fab>
-                                </DialogActions> */}
+                                        <form className="form-container">
+                                                {/* <TextField style={inputStyle} className="form-input-title" type="text" onChange={props.inputChange} name="title" id="standard-basic" label="Title" />
+                                        <TextField style={inputStyle} className="form-input-ingredients" type="text" onChange={props.inputChange} name="ingredients" id="standard-basic" label="Ingredients" /> */}
+
+                                                <TextField style={inputStyle} className="form-input-title" type="text" name="title" id="standard-basic" label="Title" />
+                                                <TextField style={inputStyle} className="form-input-ingredients" type="text" name="ingredients" id="standard-basic" label="Ingredients" />
+                                                <TextField
+                                                        id="outlined-multiline-static"
+                                                        label="Directions"
+                                                        multiline
+                                                        rows={6}
+                                                        variant="outlined"
+                                                        // onChange={props.inputChange}
+                                                        name="summary"
+                                                        className="form-input-directions"
+                                                        style={inputStyle}
+                                                />
+                                                <Fab style={style} className="add-recipe-button" color="primary" aria-label="add" type="submit">
+                                                        <AddIcon />
+                                                </Fab>
+                                        </form>
+                                        <DialogActions>
+                                                <Fab color="secondary" aria-label="cancel">
+                                                        <CancelIcon />
+                                                </Fab>
+                                        </DialogActions>
                                 </Dialog>
                         </div>
                 )
-        // }
+        }
 }
 
 export default RecipeItem;
