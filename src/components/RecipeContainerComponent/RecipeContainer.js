@@ -16,7 +16,7 @@ import '../../App.css';
 const style = {
     alignSelf: 'flex-start',
     position: 'absolute',
-    bottom: '-110px',
+    bottom: '10px',
     left: '10px'
 }
 

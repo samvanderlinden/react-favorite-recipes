@@ -20,7 +20,7 @@ const inputStyle = {
 const style = {
         alignSelf: 'flex-start',
         position: 'absolute',
-        bottom: '-110px',
+        bottom: '10px',
         left: '10px'
 }
 
@@ -52,9 +52,6 @@ class RecipeItem extends Component {
                                                 <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
                                                         <DeleteIcon />
                                                 </Fab>
-                                                {/* <Fab className="card-btn" color="default" aria-label="add" onClick={ () => {props.updateRecipe(props.uniqueID)} }>
-                                                        <EditIcon />
-                                                </Fab> */}
                                                 <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen}>
                                                         <EditIcon />
                                                 </Fab>
@@ -63,11 +60,8 @@ class RecipeItem extends Component {
                                 <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
                                         <DialogTitle id="form-dialog-title">Edit Recipe</DialogTitle>
                                         <form className="form-container">
-                                                {/* <TextField style={inputStyle} className="form-input-title" type="text" onChange={props.inputChange} name="title" id="standard-basic" label="Title" />
-                                        <TextField style={inputStyle} className="form-input-ingredients" type="text" onChange={props.inputChange} name="ingredients" id="standard-basic" label="Ingredients" /> */}
-
-                                                <TextField style={inputStyle} className="form-input-title" type="text" name="title" id="standard-basic" label="Title" />
-                                                <TextField style={inputStyle} className="form-input-ingredients" type="text" name="ingredients" id="standard-basic" label="Ingredients" />
+                                                <TextField style={inputStyle} className="form-input-title" type="text" name="title" id="standard-basic" label="Title" value={this.props.title} />
+                                                <TextField style={inputStyle} className="form-input-ingredients" type="text" name="ingredients" id="standard-basic" label="Ingredients" value={this.props.ingredients} />
                                                 <TextField
                                                         id="outlined-multiline-static"
                                                         label="Directions"
@@ -78,13 +72,14 @@ class RecipeItem extends Component {
                                                         name="summary"
                                                         className="form-input-directions"
                                                         style={inputStyle}
+                                                        value={this.props.summary}
                                                 />
                                                 <Fab style={style} className="add-recipe-button" color="primary" aria-label="add" type="submit">
                                                         <AddIcon />
                                                 </Fab>
                                         </form>
                                         <DialogActions>
-                                                <Fab color="secondary" aria-label="cancel">
+                                                <Fab onClick={this.handleClickClose} color="secondary" aria-label="cancel">
                                                         <CancelIcon />
                                                 </Fab>
                                         </DialogActions>
