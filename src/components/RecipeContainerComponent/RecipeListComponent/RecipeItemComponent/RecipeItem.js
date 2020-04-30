@@ -60,8 +60,24 @@ class RecipeItem extends Component {
                                 <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
                                         <DialogTitle id="form-dialog-title">Edit Recipe</DialogTitle>
                                         <form className="form-container">
-                                                <TextField style={inputStyle} className="form-input-title" type="text" name="title" id="standard-basic" label="Title" value={this.props.title} />
-                                                <TextField style={inputStyle} className="form-input-ingredients" type="text" name="ingredients" id="standard-basic" label="Ingredients" value={this.props.ingredients} />
+                                                <TextField 
+                                                        style={inputStyle} 
+                                                        className="form-input-title" 
+                                                        type="text" 
+                                                        name="title" 
+                                                        id="standard-basic" 
+                                                        label="Title" 
+                                                        value={this.props.title} 
+                                                />
+                                                <TextField 
+                                                        style={inputStyle} 
+                                                        className="form-input-ingredients" 
+                                                        type="text" 
+                                                        name="ingredients" 
+                                                        id="standard-basic" 
+                                                        label="Ingredients" 
+                                                        value={this.props.ingredients} 
+                                                />
                                                 <TextField
                                                         id="outlined-multiline-static"
                                                         label="Directions"
