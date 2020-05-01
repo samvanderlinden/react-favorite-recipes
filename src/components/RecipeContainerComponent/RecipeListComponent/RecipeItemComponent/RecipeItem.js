@@ -42,13 +42,14 @@ class RecipeItem extends Component {
                 this.setState({ open: false });
         }
         render() {
+                const {title, ingredients, summary} = this.props;
                 return (
                         <div>
                                 <Card className="recipe-card">
                                         <CardContent className="recipe-content">
-                                                <div>Title: {this.props.title}</div>
-                                                <div>Ingredients: {this.props.ingredients}</div>
-                                                <div>Cooking Directions: {this.props.summary}</div>
+                                                <div>Title: {title}</div>
+                                                <div>Ingredients: {ingredients}</div>
+                                                <div>Cooking Directions: {summary}</div>
                                                 <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
                                                         <DeleteIcon />
                                                 </Fab>
