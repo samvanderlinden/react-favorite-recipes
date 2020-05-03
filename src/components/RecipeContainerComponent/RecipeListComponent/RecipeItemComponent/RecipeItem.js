@@ -33,26 +33,20 @@ class RecipeItem extends Component {
       title: this.props.title,
       ingredients: this.props.ingredients,
       summary: this.props.summary,
-      recipes : this.props.recipes
+      recipes: this.props.recipes
     }
   }
 
-    //GET RECIPES
-    componentDidMount() {
-      const url = 'http://localhost:5000/recipes/';
-  
-      axios.get(url)
-        .then((res) => {
-          this.setState({ recipes: res.data })
-        }).catch(err => {
-          console.log(err);
-        });
-    }
+  //GET RECIPES
+  componentDidMount() {
+    const url = 'http://localhost:5000/recipes/';
 
-  onChangeHandler = (e) => {
-    console.log('edit onChangeHandler');
-    this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state.title);
+    axios.get(url)
+      .then((res) => {
+        this.setState({ recipes: res.data })
+      }).catch(err => {
+        console.log(err);
+      });
   }
 
   //UPDATE RECIPE
@@ -70,7 +64,13 @@ class RecipeItem extends Component {
       .catch(err => console.log(err));
 
     const currentState = this.state.recipes;
-    this.setState({recipes: [...currentState, recipe]})
+    this.setState({ recipes: [...currentState, recipe] })
+  }
+
+  onChangeHandler = (e) => {
+    console.log('edit onChangeHandler');
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state.title);
   }
 
   handleClickOpen = () => {

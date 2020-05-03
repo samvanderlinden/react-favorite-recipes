@@ -40,20 +40,6 @@ router.delete('/:id',(req, res) => {
 // @route   UPDATE /recipes/:id
 // @desc    UPDATE recipe at given id
 // @access  Public
-router.post('/:id',(req, res) => {
-    Recipes.findById(req.params.id)
-    .then(recipe => {
-        console.log(recipe);
-        recipe.title = req.body.title;
-        recipe.ingredients = req.body.ingredients;
-        recipe.summary = req.body.summary;
-        recipe.save()
-        .then(() => res.json(`Recipe ${recipe} updated`))
-        .catch(err => res.status(400))
-    })
-    .catch(err => res.status(400).json('Error:' + err));
-});
-
 router.put('/:id', (req, res) => {
     Recipes.findById(req.params.id)
     .then(recipe => {
@@ -67,7 +53,6 @@ router.put('/:id', (req, res) => {
     })
     .catch(err => res.status(400).json('Error:' + err));
 })
-
 
 module.exports = router;
 
