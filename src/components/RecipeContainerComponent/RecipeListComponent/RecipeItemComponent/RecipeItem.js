@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -36,6 +37,25 @@ class RecipeItem extends Component {
     }
   }
 
+  onChangeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  //UPDATE RECIPE
+  updateRecipe = (id) => {
+
+    console.log('update button pressed for item id', id);
+    const recipe = {
+      title: this.state.title,
+      ingredients: this.state.ingredients,
+      summary: this.state.ingredients
+    }
+
+    const url = `http://localhost:5000/recipes/${id}`;
+    axios.put(url, recipe)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  }
 
   handleClickOpen = () => {
     console.log('handleClickOpen was clicked');
