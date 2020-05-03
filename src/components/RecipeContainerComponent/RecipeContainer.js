@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Swal from 'sweetalert2';
-import AddRecipeModal from './AddRecipeComponent/AddRecipeModal';
 import RecipeList from './RecipeListComponent/RecipeList';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';

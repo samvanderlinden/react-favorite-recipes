@@ -8,7 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/Add';
 import CancelIcon from '@material-ui/icons/Cancel';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -89,13 +88,13 @@ class RecipeItem extends Component {
       <div>
         <Card className="recipe-card">
           <CardContent className="recipe-content">
-            <div>Title: {title}</div>
-            <div>Ingredients: {ingredients}</div>
+            <div><h2>Title: {title}</h2></div>
+            <div><h5>Ingredients: {ingredients}</h5></div>
             <div>Cooking Directions: {summary}</div>
             <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
               <DeleteIcon />
             </Fab>
-            <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen}>
+            <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen} >
               <EditIcon />
             </Fab>
           </CardContent>

@@ -5,8 +5,10 @@
   margin: 50px;
 }
 
-.form-container:last-child {
-  align-items: flex-start;
+.recipe-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .recipe-card {
@@ -14,10 +16,3 @@
   height: 300px;
   margin: 40px;
 }
-
-/* .form-input-title {
-  margin: auto;
-} */
-/* .card-btn {
-  align-items: center;
-} */
