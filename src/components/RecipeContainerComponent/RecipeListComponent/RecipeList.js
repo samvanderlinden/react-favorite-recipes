@@ -4,7 +4,7 @@ import RecipeItem from './RecipeItemComponent/RecipeItem';
 const RecipeList = (props) => {
   const recipes = props.recipes;
   const deleteRecipe = props.deleteRecipe;
-  const updateRecipe = props.updateRecipe;
+  // const updateRecipe = props.updateRecipe;
   // const open = props.open;
   // const style = props.style;
   // const openDialog = props.openDialog;
@@ -19,7 +19,8 @@ const RecipeList = (props) => {
           ingredients={recipe.ingredients}
           summary={recipe.summary}
           deleteRecipe={deleteRecipe}
-          updateRecipe={updateRecipe}
+          recipes={recipes}
+          // updateRecipe={updateRecipe}
           uniqueID={recipe._id}
         // open={open}
         // openDialog={openDialog}

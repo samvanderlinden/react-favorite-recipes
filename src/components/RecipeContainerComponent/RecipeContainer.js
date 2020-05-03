@@ -99,23 +99,22 @@ class RecipeContiner extends Component {
   }
 
   //UPDATE RECIPE
-  updateRecipe = (id) => {
+  // updateRecipe = (id) => {
 
-    console.log('update button pressed for item id', id);
-    const recipe = {
-      title: this.state.title,
-      ingredients: this.state.ingredients,
-      summary: this.state.ingredients
-    }
+  //   console.log('update button pressed for item id', id);
+  //   const recipe = {
+  //     title: this.state.title,
+  //     ingredients: this.state.ingredients,
+  //     summary: this.state.ingredients
+  //   }
 
-    const url = `http://localhost:5000/recipes/${id}`;
-    axios.put(url, recipe)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-  }
+  //   const url = `http://localhost:5000/recipes/${id}`;
+  //   axios.put(url, recipe)
+  //     .then(res => console.log(res.data))
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
-    console.log('styling props', style);
     return (
       <div>
         <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
@@ -150,7 +149,7 @@ class RecipeContiner extends Component {
         <RecipeList
           recipes={this.state.recipes}
           deleteRecipe={this.deleteRecipe}
-          updateRecipe={this.updateRecipe}
+          // updateRecipe={this.updateRecipe}
         // open={this.state.open}
         // openDialog={this.handleClickOpen}
         // closeDialog={this.handleClickClose}

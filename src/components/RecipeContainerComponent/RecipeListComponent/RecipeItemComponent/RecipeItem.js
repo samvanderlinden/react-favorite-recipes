@@ -30,31 +30,47 @@ class RecipeItem extends Component {
     super(props);
     this.state = {
       open: false,
-      title: '',
-      ingredients: '',
-      description: ''
-
+      title: this.props.title,
+      ingredients: this.props.ingredients,
+      summary: this.props.summary,
+      recipes : this.props.recipes
     }
   }
 
+    //GET RECIPES
+    componentDidMount() {
+      const url = 'http://localhost:5000/recipes/';
+  
+      axios.get(url)
+        .then((res) => {
+          this.setState({ recipes: res.data })
+        }).catch(err => {
+          console.log(err);
+        });
+    }
+
   onChangeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
+    console.log('edit onChangeHandler');
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state.title);
   }
 
   //UPDATE RECIPE
-  updateRecipe = (id) => {
-
-    console.log('update button pressed for item id', id);
+  updateRecipe = (e) => {
+    console.log(this.props.uniqueID);
     const recipe = {
       title: this.state.title,
       ingredients: this.state.ingredients,
-      summary: this.state.ingredients
+      summary: this.state.summary
     }
 
-    const url = `http://localhost:5000/recipes/${id}`;
+    const url = `http://localhost:5000/recipes/${this.props.uniqueID}`;
     axios.put(url, recipe)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
+
+    const currentState = this.state.recipes;
+    this.setState({recipes: [...currentState, recipe]})
   }
 
   handleClickOpen = () => {
@@ -66,6 +82,7 @@ class RecipeItem extends Component {
     console.log('handleClickClose was clicked');
     this.setState({ open: false });
   }
+
   render() {
     const { title, ingredients, summary } = this.props;
     return (
@@ -85,24 +102,26 @@ class RecipeItem extends Component {
         </Card>
         <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Edit Recipe</DialogTitle>
-          <form className="form-container">
+          <form className="form-container" onSubmit={this.updateRecipe}>
             <TextField
               style={inputStyle}
               className="form-input-title"
               type="text"
+              onChange={this.onChangeHandler}
               name="title"
               id="standard-basic"
               label="Title"
-              value={this.props.title}
+              value={this.state.title}
             />
             <TextField
               style={inputStyle}
               className="form-input-ingredients"
               type="text"
+              onChange={this.onChangeHandler}
               name="ingredients"
               id="standard-basic"
               label="Ingredients"
-              value={this.props.ingredients}
+              value={this.state.ingredients}
             />
             <TextField
               id="outlined-multiline-static"
@@ -110,11 +129,11 @@ class RecipeItem extends Component {
               multiline
               rows={6}
               variant="outlined"
-              // onChange={props.inputChange}
+              onChange={this.onChangeHandler}
               name="summary"
               className="form-input-directions"
               style={inputStyle}
-              value={this.props.summary}
+              value={this.state.summary}
             />
             <Fab style={style} className="add-recipe-button" color="primary" aria-label="add" type="submit">
               <AddIcon />
