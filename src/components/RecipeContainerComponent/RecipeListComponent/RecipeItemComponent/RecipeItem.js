@@ -24,6 +24,10 @@ const style = {
   left: '10px'
 }
 
+const recipeButtonStyle = {
+  position: 'relative',
+}
+
 class RecipeItem extends Component {
   constructor(props) {
     super(props);
@@ -86,19 +90,21 @@ class RecipeItem extends Component {
     const { title, ingredients, summary } = this.props;
     return (
       <div>
+        <div>
         <Card className="recipe-card">
           <CardContent className="recipe-content">
             <div><h2>Title: {title}</h2></div>
             <div><h5>Ingredients: {ingredients}</h5></div>
             <div>Cooking Directions: {summary}</div>
-            <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
+            <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }} style={recipeButtonStyle}>
               <DeleteIcon />
             </Fab>
-            <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen} >
+            <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen} style={recipeButtonStyle}>
               <EditIcon />
             </Fab>
           </CardContent>
         </Card>
+        </div>
         <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Edit Recipe</DialogTitle>
           <form className="form-container" onSubmit={this.updateRecipe}>
