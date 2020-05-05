@@ -40,10 +40,20 @@ class RecipeItem extends Component {
     }
   }
 
+  //GET RECIPES
+  componentDidMount() {
+    const url = 'http://localhost:5000/recipes/';
+
+    axios.get(url)
+      .then((res) => {
+        this.setState({ recipes: res.data })
+      }).catch(err => {
+        console.log(err);
+      });
+  }
 
   //UPDATE RECIPE
   updateRecipe = (e) => {
-    // e.preventDefault();
     console.log(this.props.uniqueID);
     const recipe = {
       title: this.state.title,
@@ -55,9 +65,11 @@ class RecipeItem extends Component {
     axios.put(url, recipe)
       .then(res => this.setState({
         recipes: [...this.state.recipes, res.data],
+        open: false
       },
         () => console.log('recipe edited: ', res.data)
       ));
+      window.location.reload(true);
   }
 
   onChangeHandler = (e) => {
@@ -97,7 +109,7 @@ class RecipeItem extends Component {
         </div>
         <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Edit Recipe</DialogTitle>
-          <form className="form-container" onSubmit={this.updateRecipe}>
+          <form className="form-container">
             <TextField
               style={inputStyle}
               className="form-input-title"
@@ -130,7 +142,7 @@ class RecipeItem extends Component {
               style={inputStyle}
               value={this.state.summary}
             />
-            <Fab style={style} className="add-recipe-button" color="primary" aria-label="add" type="submit">
+            <Fab style={style} className="add-recipe-button" color="primary" aria-label="add" onClick={this.updateRecipe}>
               <AddIcon />
             </Fab>
           </form>
