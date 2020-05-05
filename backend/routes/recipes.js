@@ -41,14 +41,16 @@ router.delete('/:id',(req, res) => {
 // @desc    UPDATE recipe at given id
 // @access  Public
 router.put('/:id', (req, res) => {
+  console.log('req.params', req.params);
     Recipes.findById(req.params.id)
     .then(recipe => {
-        console.log(recipe);
+        console.log('this is the recipe', recipe);
         recipe.title = req.body.title;
         recipe.ingredients = req.body.ingredients;
         recipe.summary = req.body.summary;
+        console.log('recipe object: ', recipe);
         recipe.save()
-        .then(() => res.json(`Recipe ${recipe} updated`))
+        .then((res) => res.json(`Recipe ${recipe} updated`))
         .catch(err => res.status(400))
     })
     .catch(err => res.status(400).json('Error:' + err));

@@ -40,20 +40,10 @@ class RecipeItem extends Component {
     }
   }
 
-  //GET RECIPES
-  componentDidMount() {
-    const url = 'http://localhost:5000/recipes/';
-
-    axios.get(url)
-      .then((res) => {
-        this.setState({ recipes: res.data })
-      }).catch(err => {
-        console.log(err);
-      });
-  }
 
   //UPDATE RECIPE
   updateRecipe = (e) => {
+    // e.preventDefault();
     console.log(this.props.uniqueID);
     const recipe = {
       title: this.state.title,
@@ -63,11 +53,11 @@ class RecipeItem extends Component {
 
     const url = `http://localhost:5000/recipes/${this.props.uniqueID}`;
     axios.put(url, recipe)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-
-    const currentState = this.state.recipes;
-    this.setState({ recipes: [...currentState, recipe] })
+      .then(res => this.setState({
+        recipes: [...this.state.recipes, res.data],
+      },
+        () => console.log('recipe edited: ', res.data)
+      ));
   }
 
   onChangeHandler = (e) => {
@@ -91,19 +81,19 @@ class RecipeItem extends Component {
     return (
       <div>
         <div>
-        <Card className="recipe-card">
-          <CardContent className="recipe-content">
-            <div><h2>Title: {title}</h2></div>
-            <div><h5>Ingredients: {ingredients}</h5></div>
-            <div>Cooking Directions: {summary}</div>
-            <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }} style={recipeButtonStyle}>
-              <DeleteIcon />
-            </Fab>
-            <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen} style={recipeButtonStyle}>
-              <EditIcon />
-            </Fab>
-          </CardContent>
-        </Card>
+          <Card className="recipe-card">
+            <CardContent className="recipe-content">
+              <div><h2>Title: {title}</h2></div>
+              <div><h5>Ingredients: {ingredients}</h5></div>
+              <div>Cooking Directions: {summary}</div>
+              <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }} style={recipeButtonStyle}>
+                <DeleteIcon />
+              </Fab>
+              <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen} style={recipeButtonStyle}>
+                <EditIcon />
+              </Fab>
+            </CardContent>
+          </Card>
         </div>
         <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Edit Recipe</DialogTitle>
