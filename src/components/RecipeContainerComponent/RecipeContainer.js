@@ -100,7 +100,7 @@ class RecipeContiner extends Component {
   render() {
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
           Click to add recipe
                 </Button>
         <Dialog open={this.state.open} onClose={this.handleClickClose} aria-labelledby="form-dialog-title">
