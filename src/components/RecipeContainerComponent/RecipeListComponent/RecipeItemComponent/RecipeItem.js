@@ -24,10 +24,6 @@ const style = {
   left: '10px'
 }
 
-// const recipeButtonStyle = {
-//   marginTop: '65px',
-// }
-
 class RecipeItem extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +65,7 @@ class RecipeItem extends Component {
       },
         () => console.log('recipe edited: ', res.data)
       ));
-      window.location.reload(true);
+    window.location.reload(true);
   }
 
   onChangeHandler = (e) => {
@@ -99,12 +95,12 @@ class RecipeItem extends Component {
               <div><h5>Ingredients: {ingredients}</h5></div>
               <div>Cooking Directions: {summary}</div>
               <div className="card-btn-container">
-              <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
-                <DeleteIcon />
-              </Fab>
-              <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen}>
-                <EditIcon />
-              </Fab>
+                <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
+                  <DeleteIcon />
+                </Fab>
+                <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen}>
+                  <EditIcon />
+                </Fab>
               </div>
             </CardContent>
           </Card>
