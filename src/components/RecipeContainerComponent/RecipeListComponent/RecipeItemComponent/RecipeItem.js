@@ -24,9 +24,9 @@ const style = {
   left: '10px'
 }
 
-const recipeButtonStyle = {
-  position: 'relative',
-}
+// const recipeButtonStyle = {
+//   marginTop: '65px',
+// }
 
 class RecipeItem extends Component {
   constructor(props) {
@@ -94,16 +94,18 @@ class RecipeItem extends Component {
       <div>
         <div>
           <Card className="recipe-card">
-            <CardContent className="recipe-content">
+            <CardContent className="card-content-container">
               <div><h2>Title: {title}</h2></div>
               <div><h5>Ingredients: {ingredients}</h5></div>
               <div>Cooking Directions: {summary}</div>
-              <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }} style={recipeButtonStyle}>
+              <div className="card-btn-container">
+              <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
                 <DeleteIcon />
               </Fab>
-              <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen} style={recipeButtonStyle}>
+              <Fab className="card-btn" color="default" aria-label="add" onClick={this.handleClickOpen}>
                 <EditIcon />
               </Fab>
+              </div>
             </CardContent>
           </Card>
         </div>
