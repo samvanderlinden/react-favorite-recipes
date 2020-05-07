@@ -91,9 +91,9 @@ class RecipeItem extends Component {
         <div>
           <Card className="recipe-card">
             <CardContent className="card-content-container">
-              <div><h2>Title: {title}</h2></div>
-              <div><h5>Ingredients: {ingredients}</h5></div>
-              <div>Cooking Directions: {summary}</div>
+              <div className="title-content"><h2>{title}</h2></div>
+              <div className="ingredients-content"><h5>Ingredients: {ingredients}</h5></div>
+              <div className="directions-content"><h6>Cooking Directions: {summary}</h6></div>
               <div className="card-btn-container">
                 <Fab className="card-btn" color="secondary" aria-label="add" onClick={() => { this.props.deleteRecipe(this.props.uniqueID) }}>
                   <DeleteIcon />
