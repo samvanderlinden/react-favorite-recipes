@@ -91,7 +91,7 @@ class RecipeItem extends Component {
         <div>
           <Card className="recipe-card">
             <CardContent className="card-content-container">
-              <div className="title-content"><h2>{title}</h2></div>
+              <div className="title-content"><h2>{title.toUpperCase()}</h2></div>
               <div className="ingredients-content"><h5>Ingredients: {ingredients}</h5></div>
               <div className="directions-content"><h6>Cooking Directions: {summary}</h6></div>
               <div className="card-btn-container">
