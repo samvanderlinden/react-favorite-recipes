@@ -31,7 +31,7 @@
     "uuid": "^7.0.2"
   },
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "react-scripts start",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
